@@ -5,6 +5,7 @@
 
 logger -t door.sh -p local0.notice FouDoor activated: $USER opened the door
 
-TIMEOUT=10
+TIMEOUT=5
 
-trap '/usr/bin/gpioset "P9_14 [ehrpwm1a]"=1 & sleep $TIMEOUT' EXIT
+/usr/bin/gpioset --hold-period 5s -t 0 "P9_14 [ehrpwm1a]"=1
+sleep $TIMEOUT
